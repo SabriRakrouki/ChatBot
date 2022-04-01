@@ -14,6 +14,7 @@ var router = express.Router();
 var jsonParser = bodyParser.json();
 var port = 5001;
 var hostname = '127.0.0.1';
+const token = process.env.TOKEN;
 
 
 app.use(bodyParser.json({
@@ -127,7 +128,7 @@ function sendTextMessage(sender, text) {
 
 }
 
-const token = process.env.TOKEN;
+
 app.post('/webhook/', jsonParser, function (req, res) {
 
   var messaging_events = req.body.entry[0].messaging;
