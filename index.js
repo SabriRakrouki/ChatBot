@@ -5,7 +5,7 @@ var fs = require('fs');
 var https = require('https');
 const editJsonFile = require("edit-json-file");
 var path = require('path');
-var FormData = require('form-data');var FormData = require('form-data');
+var FormData = require('form-data'); var FormData = require('form-data');
 var events = require('events').EventEmitter;
 
 
@@ -91,15 +91,15 @@ function sendTextMessage(sender, text) {
         "template_type": "button",
         "text": "Bonjoir, choisir entre :",
         "buttons": [{
-            "type": "postback",
-            "title": "Capture un image",
-            "payload": "Photo"
-          },
-          {
-            "type": "postback",
-            "title": "Capture un séquence video",
-            "payload": "Video"
-          }
+          "type": "postback",
+          "title": "Capture un image",
+          "payload": "Photo"
+        },
+        {
+          "type": "postback",
+          "title": "Capture un séquence video",
+          "payload": "Video"
+        }
         ]
       }
     }
@@ -127,7 +127,7 @@ function sendTextMessage(sender, text) {
 
 }
 
-const token = "EAAIfN8mv7BwBAEHje9Ggqbjnx3Y5KcpaU6KxW0ICXkKnWdE4tXo3CjyGnWacQidSjGzTHG1M8GeMhKWfj8BqGNQ97SFxIqZCOGM0gurZAffhIQhrSi4YDQQBoylRMwVmKGf7pugqewsZBjSXimaxFzwIoDtRdUdWVoWD6mudAZDZD";
+const token = process.env.TOKEN;
 app.post('/webhook/', jsonParser, function (req, res) {
 
   var messaging_events = req.body.entry[0].messaging;
@@ -198,6 +198,8 @@ function sendVideoMessage(sender, name2) {
   messageData2.append('filedata', readStream);
   callSendAPI(messageData2);
 }
+
+
 function callSendAPI(messageData1) {
   var options = {
     method: 'post',
@@ -339,7 +341,7 @@ app.post('/upload/image/', function (req, res) {
     ImagesenderAgent.emit('GetImage');
   }, 3000)
 
-  
+
 });
 app.get("/", function (req, res) {
   res.send("Hi.");
